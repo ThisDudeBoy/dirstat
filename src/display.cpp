@@ -60,7 +60,18 @@ void show_stats(const DirStats& stats, const fs::path& path) {
     std::cout << colors::green("[OK] Scan complete!") << std::endl;
 }
 
-void show_tree(const fs::path& path, int max_depth, bool show_hidden) {
+// Helper to check exclusions
+bool is_excluded_display(const fs::path& path, const std::vector<std::string>& exclude) {
+    std::string name = path.filename().string();
+    for (const auto& pattern : exclude) {
+        if (name == pattern || name.find(pattern) != std::string::npos) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void show_tree(const fs::path& path, int max_depth, bool show_hidden, const std::vector<std::string>& exclude) {
     std::error_code ec;
     fs::path abs_path = fs::absolute(path, ec);
     
@@ -84,6 +95,7 @@ void show_tree(const fs::path& path, int max_depth, bool show_hidden) {
         for (const auto& entry : fs::directory_iterator(dir, fs::directory_options::skip_permission_denied, ec)) {
             std::string name = entry.path().filename().string();
             if (!show_hidden && !name.empty() && name[0] == '.') continue;
+            if (is_excluded_display(entry.path(), exclude)) continue;
             entries.push_back(entry);
         }
         
