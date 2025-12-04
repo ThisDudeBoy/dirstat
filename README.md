@@ -15,6 +15,10 @@ Ever wondered where all your disk space went? **dirstat** scans directories at b
   <img src="https://img.shields.io/badge/Dependencies-Zero-blue?style=for-the-badge" />
 </p>
 
+<p align="center">
+  <img src="Animation.gif" alt="dirstat demo" width="700" />
+</p>
+
 ---
 
 ## 🎯 Features
