@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  build:
+    name: Build & Test
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup CMake
+        uses: lukka/get-cmake@latest
+
+      - name: Configure CMake
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build --config Release
+
+      - name: Test - Help command
+        run: ./build/Release/dirstat.exe --help
+
+      - name: Test - Scan current directory
+        run: ./build/Release/dirstat.exe scan .
+
+      - name: Test - Large files
+        run: ./build/Release/dirstat.exe large -c 5
+
+      - name: Test - Tree view
+        run: ./build/Release/dirstat.exe tree -d 2
+
+      - name: Test - File types
+        run: ./build/Release/dirstat.exe types
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dirstat-windows
+          path: build/Release/dirstat.exe

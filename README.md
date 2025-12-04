@@ -1,5 +1,6 @@
 # ⚡ dirstat
 
+[![Build](https://github.com/ThisDudeBoy/dirstat/actions/workflows/ci.yml/badge.svg)](https://github.com/ThisDudeBoy/dirstat/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![C++17](https://img.shields.io/badge/C%2B%2B-17-blue.svg)](https://isocpp.org/)
 [![Windows](https://img.shields.io/badge/Platform-Windows-lightgrey.svg)](https://www.microsoft.com/windows)
@@ -177,6 +178,27 @@ dirstat - Ultra-fast directory analyzer
 - **Language**: C++17
 - **Build System**: CMake
 - **Libraries**: Standard Library only (no external deps)
+
+---
+
+## ✅ What dirstat Does
+
+- 📊 Scans directories and reports total files, folders, and size
+- 📏 Finds the largest files in any directory
+- 🌳 Displays a visual tree structure of folders
+- 🔍 Detects potential duplicates based on file size
+- 📋 Analyzes file types and their disk usage
+- 🎨 Outputs colored, easy-to-read results in the terminal
+- ⚡ Works offline, no internet required
+
+## ❌ What dirstat Does NOT Do
+
+- ❌ **No file deletion** - Read-only, never modifies your files
+- ❌ **No deep duplicate detection** - Only compares by size, not content/hash
+- ❌ **No real-time monitoring** - One-time scan, not a background service
+- ❌ **No GUI** - Command-line only (by design, for speed)
+- ❌ **No cross-platform** - Windows only (for now)
+- ❌ **No network drives optimization** - Best for local drives
 
 ---
 
